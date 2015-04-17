@@ -1,27 +1,68 @@
 ---
-title       : Test title
-subtitle    : Subtest title
+title       : First Slidify Deck
+subtitle    : Test Test
 author      : me
-job         : lol
+job         : job? lol
 logo        : LCHLChop.png
 framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
 highlighter : highlight.js  # {highlight.js, prettify, highlight}
 hitheme     : tomorrow      # 
-widgets     : []            # {mathjax, quiz, bootstrap}
+widgets     : [mathjax, quiz, bootstrap]            # {mathjax, quiz, bootstrap}
 mode        : selfcontained # {standalone, draft}
 knit        : slidify::knit2slides
 ---
 
-## Read-And-Delete
+## Slide 1
 
-1. Edit YAML front matter
-2. Write using R Markdown
-3. Use an empty line followed by three dashes to separate slides!
+```{r}
+y <- 1
+x <- 3
+z <- x + y
+z
+```
+
 
 --- .class #id 
 
 ## Slide 2
 
-Test slide 2
+```
+z
+```
+
+--- .class #id
+
+## Slide 3
+
+```{r}
+z
+```
 
 
+--- .class #id
+
+## Question 1
+ 
+What was z?
+
+1. 1
+2. 2
+3. 3
+4. _4_
+
+*** .hint Go back a slide or two
+*** .explanation z is `r z`
+
+--- .class #id
+
+## Question 1
+
+What is 1 + 1?
+
+1. 1
+2. _2_
+3. 3
+4. 4
+
+*** .hint This is a hint
+*** .explanation This is an explanation
