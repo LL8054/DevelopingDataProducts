@@ -4,6 +4,8 @@ shinyUI(pageWithSidebar(
                 sliderInput('mu', 'Guess at the mean', value=70, min=62, max=74, step=.05,)
         ),
         mainPanel(
-                plotOutput('newHist')
+                plotOutput('newHist'),
+                verbatimTextOutput("renderMu"),
+                verbatimTextOutput("renderMu2")
         )
 ))

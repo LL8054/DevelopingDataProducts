@@ -10,6 +10,8 @@ shinyServer(
                         mse <- mean((galton$child - mu)^2)
                         text(63, 150, paste("mu = ", mu))
                         text(63, 140, paste("MSE = ", round(mse, 2)))
+                        output$renderMu <- renderPrint({input$mu})
+                        output$renderMu2 <- renderPrint({mu})
                 })
         }
 )
