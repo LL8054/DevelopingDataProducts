@@ -17,29 +17,33 @@ fitAtt <- lm(Att.Next.Yr ~ Yards + Attempts, data)
 set.seed(1)
 fitYds <- lm(Yards.Next.Yr ~ Yards + Attempts, data)
 
+
 shinyServer(
         function(input, output) {
             
+            predictYds <- function(Y, A){
+                test <- data.frame(Y, A)
+                names(test) <- c("Yards", "Attempts")
+                predict(fitYds, test)
+            }
             
-            
+            predictAtt <- function(Y, A){
+                test <- data.frame(Y, A)
+                names(test) <- c("Yards", "Attempts")
+                predict(fitAtt, test)
+            }
+          
             output$newPlot <- renderPlot({
-                        iYards <- input$Yards
-                        iAttempts <- input$Attempts
-                
-                        test <- data.frame(iYards,iAttempts)
-                        names(test) <- c("Yards", "Attempts")
-                        predictAtt <- predict(fitAtt, test)
-                        predictYds <- predict(fitYds, test)
                         
+                        newYards <- predictYds(input$Yards, input$Attempts)
+                        newAttempts <- predictAtt(input$Yards, input$Attempts)
                         qplot(data=data, x=Attempts, y=Yards) + 
-                            geom_point(aes(x=predictAtt, y=predictYds, color="Estimate"))
-                        
-                        
+                            geom_point(aes(x=newAttempts, y=newYards, color="Estimate"))
                         
                   })
             
-            output$renderYds <- renderPrint({predictYds})
+            output$renderYds <- renderPrint({predictYds(input$Yards, input$Attempts)})
             
-            output$renderAtt <- renderPrint({predictAtt})
+            output$renderAtt <- renderPrint({predictAtt(input$Yards, input$Attempts)})
         }
 )
